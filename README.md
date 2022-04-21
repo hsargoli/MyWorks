@@ -1,5 +1,5 @@
 - Hi, I’m @hsargoli
-- I’m interested in Artificial and business intelligence,Data science,Image processing
+- I’m interested in Artificial and business intelligence, Data science, Image processing
                               [data & Signals wrangling, inventing new procedure,...]
 - I’m currently learning algorithms
 - How to reach me ... hsargoli@gmail.com
