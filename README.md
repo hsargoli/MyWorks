@@ -1,4 +1,6 @@
 - Hi, I’m @hsargoli
--I’m interested in AI,BI,Data science,Image processing and numbers
-- I’m currently learning R
--How to reach me ... hsargoli@gmail.com
+- I’m interested in Artificial and business intelligence,Data science,Image processing
+                              [data & Signals wrangling, inventing new procedure,...]
+- I’m currently learning algorithms
+- How to reach me ... hsargoli@gmail.com
+- its prod of me to teach my knowledges - 
