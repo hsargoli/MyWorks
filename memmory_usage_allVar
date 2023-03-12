@@ -1,0 +1,17 @@
+import sys
+import numpy as np
+local_var = list(locals().items())
+a = []
+b = []
+for i,j in local_var:
+    aa = int(sys.getsizeof(j))
+    zz = i
+    if aa>=1000:
+        
+        b.append(zz)
+        a.append(aa)
+c = list(zip(b,a))
+print(*c, sep = '\n')
+
+
+python random_lg;python random_lgt;python random_rf 
