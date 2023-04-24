@@ -1,0 +1,115 @@
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&******************************************&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&				linux - ubunto			  &&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&******************************************&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+curl -X 'POST' \
+  'http://127.0.0.1:8000/todo' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "id": 1,
+  "item": "First Todo is to finish this book!"
+}'
+curl -X 'GET' 'http://127.0.0.1:8000/todo/1' -H 'accept: application/json'
+
+
+
+
+!du -sh /data/*   			                              || storage in dir
+							                              
+!df -h    					                              || mounted report 
+							                              
+!lsof -n | grep -i deleted                                || deleted file details
+							                              
+!ls -a /data/ 			                                  || show hidden files in dir
+
+!rm -rf /data/.Trash-1001/*                               || deleted trash 
+							                              
+!free -m 			                                      || memory info -m megabyte -k kilobyte -g gigabyete
+!vmstat						                              || memory info
+htop 						                              || memory monitor *
++                                                         
+							                              
+locate filename.iii                                       || to search file 
+
+grep -r textToSearchInAllDirectory                        || To Search In All Directory
+
+
+export PATH="opt/anaconda3.8/bin:$PATH"
+export PATH="/opt/anaconda3.8/bin/python:$PATH"
+
+
+which python
+sudo make -j ${1} 
+
+
+
+
+
+
+
+tar -zcvf sh.tar.gz /data/OUT/OUT1/                                                    || tar dir
+for file in $(ls -d */ | grep onSearch); do bzib risk.bzip $file; done                 || zip dir
+
+
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*****************************************&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&				conda and PIP			  &&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*****************************************&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+conda env remove -n base_clone                 // remove env 
+
+conda create --name base_clone --clone base    // clone env
+
+conda env list
+
+conda list                                     // list of packages
+
+
+pip3 freeze > requirements_risk_shakhsi.txt
+
+
+pip install -r /path/to/requirements.txt
+pip install <path-to-tar-gz>
+
+
+python -m venv path/to/creaate/virtualenv
+activate vanve of python
+source sargoli_env/bin/activate
+
+pip install -r requirements.txt
+
+
+# to add env to jupyter notebook
+pip install --user ipykernel
+python -m ipykernel install --user --name=myenv
+
+
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*********************************&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&				risk			  &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*********************************&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+Closely related to credit ratings for sovereigns are ratings of country risk and assessments of the likelihood of fiscal crises
+
+
+---------------------------------------------------------------------------------
+ROC analysis VS  Precision-Recall
+The difference between these metrics is how the ordering quality is quantified [2].
+ ROC analysis uses True Positive Rate (TPR or Recall) and False Positive Rate (FPR).
+ Precision-Recall analysis, on the other hand, exchanges FPR for Precision
+ Then, while ROC uses all the cells (TP, FP, TN, FN) of the Confusion Matrix
+ , Precision-Recall disregards the True Negatives, which have a high impact on an imbalanced problem,
+ since almost all your data is of the negative class. Therefore, Precision-Recall gives more weight to the minority class
+ (the positive class) than the ROC. This is why the Precision-Recall AUC is more suitable for heavily imbalanced problems
+ ---------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
