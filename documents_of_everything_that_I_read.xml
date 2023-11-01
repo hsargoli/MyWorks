@@ -52,6 +52,388 @@ with engine.connect() as conn:
 
 
 
+#### run in CMD:  uvicorn main:app --reload   
+#### main: name of file "main.py",    app: FastApi instance created,        --reload: for reload if chabging is happend
+
+
+
+
+from fastapi.openapi.docs import (
+    get_swagger_ui_oauth2_redirect_html,
+)
+from fastapi import FastAPI
+
+
+#app = FastAPI()
+#@app.get(app.swagger_ui_oauth2_redirect_url, include_in_schema=False)
+#async def swagger_ui_redirect():
+#    return get_swagger_ui_oauth2_redirect_html()
+# ============================================================
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ============================================================ 1- hello world of FastApi
+
+
+from fastapi import FastAPI
+
+app = FastAPI()    # FastAPI "instance"
+
+
+@app.get("/home")    ### Path -> "/" -> http://127.0.0.1:8000/   |||| "/home -> http://127.0.0.1:8000/home
+                     ### Operation: POST / GET / PUT / DELETE 
+async def root():
+    return {"message": "Hello World"}
+
+
+
+# ============================================================
+##############################################################
+##############################################################
+##############################################################
+##############################################################
+##############################################################
+# ============================================================ 2- Path Parameters
+
+
+
+from fastapi import FastAPI
+
+app = FastAPI()
+
+
+@app.get("/items/{item_id}") 
+async def read_item(item_id: int):
+   return {"item_id": item_id}
+
+### http://127.0.0.1:8000/items/2
+### http://127.0.0.1:8000/items/hi     ---> error: hi is not integer
+
+
+
+
+# ============================================================
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ============================================================ 3- Order matters
+
+
+
+
+from fastapi import FastAPI
+
+app = FastAPI()
+
+
+@app.get("/users")
+async def read_users():
+   return ["Rick", "Morty"]
+
+
+@app.get("/users")
+async def read_users2():
+   return ["Bean", "Elfo"]
+
+
+### if we had two or more functions for 1 path, the path just shows first function
+### http://127.0.0.1:8000/users
+
+
+    
+# ============================================================
+##############################################################
+##############################################################
+##############################################################
+##############################################################
+##############################################################
+# ============================================================ 4- Create an Enum class
+
+
+
+from enum import Enum
+from fastapi import FastAPI
+
+
+class ModelName(str, Enum):
+   alexnet = "alexnet"
+   resnet = "resnet"
+   lenet = "lenet"
+   
+  
+app = FastAPI()
+
+
+@app.get("/models/{model_name}")
+async def get_model(model_name: ModelName):
+   if model_name is ModelName.alexnet:
+       return {"model_name": model_name, "message": "Deep Learning FTW!"}
+
+   if model_name.value == "lenet":
+       return {"model_name": model_name, "message": "LeCNN all the images"}
+
+   return {"model_name": model_name, "message": "Have some residuals"}  
+   
+### http://127.0.0.1:8000/models/alexnet
+
+    
+# ============================================================
+#|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+#|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+#|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+#|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+#|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+# ============================================================ 5- file_path 
+
+
+
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/files/{file_path:path}")
+async def read_file(file_path: str):
+   return {"file_path": file_path}
+   
+   
+### http://127.0.0.1:8000/files//home/johndoe/myfile.txt
+### attention to double slash
+
+
+# ============================================================
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ============================================================ 6- Query Parameters
+
+
+from fastapi import FastAPI
+
+app = FastAPI()
+
+fake_items_db = [{"item_name": "Foo"}, {"item_name": "Bar"}, {"item_name": "Baz"}]
+fake_items_db2 = [{"item_name": "Foo"}, {"item_name": "Bar"}, {"item_name": "Baz"},{"item_name": "aaa"}, {"item_name": "vvv"} ]
+
+
+@app.get("/items/")
+async def read_item(skip: int = 0, limit: int = 4):
+   return fake_items_db2[skip : skip + limit]
+
+
+### http://127.0.0.1:8000/items/?skip=0&limit=4      ===        http://127.0.0.1:8000/items/
+### because of default values
+### http://127.0.0.1:8000/items/?skip=3&limit=10   skip = 3
+### The query is the set of key-value pairs that go after the ? in a URL, separated by & characters
+
+
+# ============================================================
+##############################################################
+##############################################################
+##############################################################
+##############################################################
+##############################################################
+# ============================================================ 7- Optional parameters
+
+
+
+from typing import Union
+from fastapi import FastAPI
+
+app = FastAPI()
+
+
+@app.get("/items/{item_id}")
+async def read_item(item_id: str, q: Union[str, None] = None):
+   if q:
+       return {"item_id": item_id, "q": q}
+   return {"item_id": item_id}
+
+### if set defualt value as NoNe, it become optional
+### http://127.0.0.1:8000/items/alaki
+### 
+
+
+# ============================================================
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ============================================================ 8- mix of path and query parameter
+
+
+from typing import Union
+from fastapi import FastAPI
+
+app = FastAPI()
+
+
+@app.get("/users/{user_id}/items/{item_id}")
+async def read_user_item(
+   user_id: int, item_id: str, q: Union[str, None] = None, short: bool = False
+):
+   item = {"item_id": item_id, "owner_id": user_id}
+   if q:
+       item.update({"q": q})
+   if not short:
+       item.update(
+           {"description": "This is an amazing item that has a long description"}
+       )
+   return item
+  
+### http://127.0.0.1:8000/users/12/items/w
+
+
+# ============================================================
+##############################################################
+##############################################################
+##############################################################
+##############################################################
+##############################################################
+# ============================================================ 9- query "needy" must writed
+
+
+
+
+from fastapi import FastAPI
+
+app = FastAPI()
+
+
+@app.get("/items/{item_id}")
+async def read_user_item(item_id: str, needy: str):
+   item = {"item_id": item_id, "needy": needy}
+   return item
+## http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
+
+
+
+# ============================================================
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ============================================================ 10- pydantic
+
+
+
+
+from typing import Union
+from fastapi import FastAPI
+from pydantic import BaseModel
+
+
+class Item(BaseModel):
+   name: str
+   description: Union[str, None] = None
+   price: float
+   tax: Union[float, None] = None
+
+
+app = FastAPI()
+
+
+@app.post("/items/")
+async def create_item(item: Item):
+   item_dict = item.dict()
+   if item.tax:
+       price_with_tax = item.price + item.tax
+       item_dict.update({"price_with_tax": price_with_tax})
+   return item_dict
+
+
+# ============================================================
+##############################################################
+##############################################################
+##############################################################
+##############################################################
+##############################################################
+# ============================================================  11 = q max_length=50
+
+from typing import Union
+
+from fastapi import FastAPI, Query
+
+app = FastAPI()
+
+
+@app.get("/items/")
+async def read_items(q: Union[str, None] = Query(default=None, max_length=50)):
+    results = {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
+    if q:
+        results.update({"q": q})
+    return result
+    
+    
+
+
+# ============================================================
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ============================================================ 12 - template
+'''
+must mkdir template folder in path and item.html in it
+for css files create static folder and put them to it 
+
+'''
+from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
+
+app = FastAPI()
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+
+templates = Jinja2Templates(directory="templates")
+
+
+@app.get("/items/{id}", response_class=HTMLResponse)
+async def read_item(request: Request, id: str):
+    return templates.TemplateResponse("item.html", {"request": request, "id": id})
+
+
+###   http://127.0.0.1:8000/items/5
+
+# ============================================================
+##############################################################
+##############################################################
+##############################################################
+##############################################################
+##############################################################
+# ============================================================ 13- authorization 
+
+from fastapi import Depends, FastAPI
+from fastapi.security import OAuth2PasswordBearer
+from typing_extensions import Annotated
+
+app = FastAPI()
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+
+
+@app.get("/items/")
+async def read_items(token: Annotated[str, Depends(oauth2_scheme)]):
+    return {"token": token}
+
+# ============================================================
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ============================================================
+
+
+
+
 
 
 
