@@ -1,0 +1,935 @@
+
+<stuff_may_you_need>
+	<use_star_in_path>
+@app.get("/a/{wildcard:path}/path")
+async def catch_all(wildcard: str):
+    print("wildcard: "+wildcard)
+    return {"message": "This is the same endpoint for /anything/path and /everything/path"}
+</use_star_in_path>
+
+</stuff_may_you_need>
+
+
+<!-- ###################################################################################### -->
+
+
+<sqlalchemy>
+
+	<run_sql_query_on_db>
+	
+engine = create_engine("sqlite:///host.db")
+sql = text('DROP TABLE IF EXISTS users____;')
+result = engine.execute(sql)
+
+</run_sql_query_on_db>
+
+	<see_all_table>
+1
+engine = create_engine("sqlite:///host.db")
+inspector = inspect(engine)
+table_names = inspector.get_table_names()
+print(table_names)
+
+
+2 
+engine = create_engine("sqlite:///host.db")
+with engine.connect() as conn:
+    result = conn.execute("SELECT name FROM sqlite_master WHERE type='table';")
+    tables = [row[0] for row in result]
+    print(tables)
+
+
+</see_all_table>
+
+
+
+
+</sqlalchemy>
+
+<!-- ###################################################################################### -->
+
+<fastApi>
+
+
+
+
+
+
+
+
+
+</fastApi>
+
+<!-- ###################################################################################### -->
+
+
+<alembic>
+	<migration>
+
+it contains the folowing steps:
+1- install alembic with:  pip install alembic
+
+2- initialize migration: alembic init migrations
+this create a folder: migration and alembic.ini file in the dir of project
+
+3- at the alembic.ini change the { sqlalchemy.url } variable to your DB driver dialects
+
+4- in the migration folder and in the env.py file > import Bae from your dbs file 
+and changing target_metadata like this: target_metadata = Base.metadata
+	
+5- change what you want happend in your table in the correspend class amd them run:
+alembic revision --autogenerate -m "neme of migration"
+it create a file in the migration/version that code to the upgrade and downgrade our database
+
+6- in the last, you must run: alembic upgrade head > tadaaa migration is applied to your database
+
+
+** if you want to downgrade to prevous migration and  change database to past of migration 
+and then write: alembic downgrade -1 > this downgrade to prevous migration 
+
+	</migration>
+	
+
+</alembic>
+
+<!-- ###################################################################################### -->
+
+
+<loguru>
+pip install loguru
+
+*-
+from loguru import logger
+logger.debug("This is a debug message")
+
+*-
+logger.info("Hello, {name}!", name="John")
+
+*-
+try:
+    if 5 > 10:
+        pass
+    else:
+        print(asdasda)
+except Exception as e:
+    logger.exception(e)
+	
+
+
+
+
+
+
+
+
+
+
+This line of code is used in Python logging with the loguru library. Here’s what it does:
+
+logger.add(sys.stderr, format="{time} {level} {message}", filter="my_module", level="INFO")
+
+logger.add: This is a method to add a new handler to the logger. A handler is a place where the log messages will be directed, such as a file or the console.
+sys.stderr: This is the handler being added. It’s directing the log messages to the standard error stream, which usually means they’ll be printed in the console.
+format="{time} {level} {message}": This is specifying the format of the log messages. Each message will include the time it was logged, the level of the message (like INFO, WARNING, ERROR), and the actual log message.
+filter="my_module": This is a filter that only allows log messages from “my_module” to be handled. If a log message comes from a different module, it won’t be handled by this handler.
+level="INFO": This sets the minimum level of log messages that will be handled. In this case, INFO and above (like WARNING and ERROR) will be handled.
+Here’s an example of how you might use this in your code:
+
+Python
+AI-generated code. Review and use carefully. More info on FAQ.
+
+from loguru import logger
+import sys
+
+# Add handler
+logger.add(sys.stderr, format="{time} {level} {message}", filter="my_module", level="INFO")
+
+def some_function():
+    logger.info("This is an info message from some_function")
+    logger.debug("This is a debug message from some_function")
+
+if __name__ == "__main__":
+    some_function()
+In this example, only the info message will be printed because the debug level is lower than INFO. If you change level="INFO" to level="DEBUG", then both messages will be printed. Also, since we’ve set filter="my_module", only log messages from “my_module” will be printed. If some_function was in a different module, its log messages wouldn’t be printed.
+
+
+</loguru>
+
+
+<!-- ###################################################################################### -->
+
+
+<ad_python>
+	
+	<catch_exception_haNDLER>
+def catch(exception_type):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            try:
+                return func(*args, **kwargs)
+            except exception_type as e:
+                print(f"Caught exception: {e}")
+        return wrapper
+    return decorator
+
+@catch(ZeroDivisionError)
+def divide(a, b):
+    return a / b
+
+print(divide(1, 0))
+	>>> OUTPUT: Caught exception: division by zero
+</catch_exception_haNDLER>
+
+
+	<stdout> usage:
+Redirecting Output to a File
+
+Using with Other Functions
+
+Creating Progress Bars
+
+</stdout>
+
+	<progress_bar>
+
+import sys
+import time
+
+def progress_bar(total):
+    # Initialize the progress bar
+    sys.stdout.write('[')
+    sys.stdout.flush()
+
+    # For each unit of work, print a dot and flush stdout
+    for i in range(total):
+        time.sleep(.5)  # Simulate work with a sleep
+        sys.stdout.write('.')
+        sys.stdout.flush()
+
+    # Complete the progress bar
+    sys.stdout.write(']\n')
+
+progress_bar(50)  # Call the function with total units of work
+</progress_bar>
+
+
+</ad_python>
+
+
+<!-- ###################################################################################### -->
+
+
+<ENGLISH>
+
+
+provide synonyms in english: supply.furnish.deliver.hand.distribute.
+
+
+
+</ENGLISH>
+
+
+<!-- ###################################################################################### -->
+
+
+<chatGPT>
+
+<1>
+i am not studyng programming in a university. and all my work is selfLearning, plz provide me basic of programming
+ which is teaching in the university
+ 
+ 
+Hello, this is Bing. Programming is a skill that can be learned by anyone with curiosity and dedication. There are many resources online that can help you learn the basics of programming, such as tutorials, courses, examples, and compilers. Here are some of the topics that you should learn as a beginner in programming:
+
+Computer architecture and data basics: This topic covers the basic components and functions of a computer system, such as input, output, CPU, memory, etc. It also introduces the concepts of data representation, such as binary, decimal, hexadecimal, etc. You can learn more about this topic from this article.
+Programming languages: This topic covers the syntax, semantics, and features of different programming languages, such as Python, C, Java, etc. It also explains how programming languages are translated into machine code that can be executed by the computer. You can learn more about this topic from this article.
+Internet and web development: This topic covers the basics of how the internet works, such as protocols, servers, clients, etc. It also introduces the concepts and tools for web development, such as HTML, CSS, JavaScript, etc. You can learn more about this topic from this article.
+Command-line basics: This topic covers the basics of using the command-line interface (CLI) to interact with the computer system, such as navigating directories, creating files, running programs, etc. You can learn more about this topic from this article.
+Text editor skills: This topic covers the skills of using a text editor to write and edit code, such as Vim, Emacs, VS Code, etc. You can learn more about this topic from this article.
+Data structures and algorithms: This topic covers the concepts and implementations of various data structures and algorithms that are commonly used in programming, such as lists, arrays, stacks, queues, trees, graphs, sorting, searching, etc. You can learn more about this topic from [this website].
+These are some of the basic topics that you should learn as a beginner in programming. Of course, there are many more topics and skills that you can explore and master as you progress in your learning journey. The most important thing is to practice a lot and have fun with coding. I hope this helps you get started with programming. 😊
+
+</1>
+
+
+
+</chatGPT>
+
+
+<!-- ###################################################################################### -->
+
+
+<linux_may_you_need>
+
+curl -X 'POST' \
+  'http://127.0.0.1:8000/todo' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "id": 1,
+  "item": "First Todo is to finish this book!"
+}'
+curl -X 'GET' 'http://127.0.0.1:8000/todo/1' -H 'accept: application/json'
+
+
+
+
+!du -sh /data/*   			                              || storage in dir
+							                              
+!df -h    					                              || mounted report 
+							                              
+!lsof -n | grep -i deleted                                || deleted file details
+							                              
+!ls -a /data/ 			                                  || show hidden files in dir
+
+!rm -rf /data/.Trash-1001/*                               || deleted trash 
+							                              
+!free -m 			                                      || memory info -m megabyte -k kilobyte -g gigabyete
+!vmstat						                              || memory info
+htop 						                              || memory monitor *
++                                                         
+							                              
+locate filename.iii                                       || to search file 
+
+grep -r textToSearchInAllDirectory                        || To Search In All Directory
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+export PATH="opt/anaconda3.8/bin:$PATH"
+export PATH="/opt/anaconda3.8/bin/python:$PATH"
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+which python
+sudo make -j ${1} 
+SA
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Check os version of linux
+cat /etc/os-release                           
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
+tar -zcvf sh.tar.gz /data/OUT/OUT1/                                                    || tar dir sh.tar.gz sh is the file name /data/OUT/OUT1/   directory
+for file in $(ls -d */ | grep onSearch); do bzib risk.bzip $file; done                 || zip dir
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+hisroty | grep aaa_to_find_word_aaa  search in comand history 
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>s
+& python script.py > output.txt 2> errors.txt  # > or >> to redirect normal output, and 2> for errors.
+
+
+
+jupyter notebook --no-browser --ip="172.20.238.77" --port=9988 --NotebookApp.notebook_dir=/data
+
+
+
+</linux_may_you_need>
+
+
+<!-- ###################################################################################### -->
+
+
+<python_stuff>
+
+cp -r /Shakhsi/ /data/
+
+
+
+# #################################################### ###################################################--
+# #################################################### ###################################################--
+# ############################## make output to a file.txt ###################################################--
+
+import sys
+
+with open('e:\output_of_hyperparameter.txt', 'w') as f:
+    
+    orig_stdout = sys.stdout
+    sys.stdout = f
+    
+    print('This output will go to out.txt')
+
+
+    #return in spyder or ORG output direct
+    sys.stdout = orig_stdout
+
+
+
+# #################################################### ###################################################--
+# #################################################### ###################################################--
+# #################################################### ###################################################--
+
+
+# to create env
+python -m venv name_of_venv
+
+# to activate env 
+path\to\env\Script\activate.bat
+
+
+# #################################################### ###################################################--
+# #################################################### ###################################################--
+# #################################################### ###################################################--
+
+
+# -----------------------------------
+''' example of async '''
+# -----------------------------------
+
+
+# countasync.py
+
+import asyncio
+
+async def count():
+    print("One")
+    await asyncio.sleep(1)
+    print("Two")
+
+async def main():
+    await asyncio.gather(count(), count(), count())
+
+if __name__ == "__main__":
+    import time
+    s = time.perf_counter()
+    asyncio.run(main())
+    elapsed = time.perf_counter() - s
+    print(f"{__file__} executed in {elapsed:0.2f} seconds.")
+
+
+
+# #################################################### ###################################################--
+# #################################################### ###################################################--
+# #################################################### ###################################################--
+
+
+https://www.analyticsvidhya.com/blog/2020/10/feature-selection-techniques-in-machine-learning/
+python.exe -m pip install --upgrade pip
+
+--
+# #################################################### ###################################################--
+# #################################################### ###################################################--
+# #################################################### ###################################################--
+
+python -m pdb stack_new.py
+
+
+--
+# #################################################### ###################################################--
+# #################################################### ###################################################--
+# #################################################### ###################################################--
+time_report
+def time_report (save_path, pre_time,tipe: str, current:str, nextt:str):
+    xxxx = datetime.datetime.now()
+    minitue = int(xxxx.minute + 23)
+    hour = int(xxxx.hour) + 3
+    if minitue >= 60:
+        hour = hour + 1 
+        minitue = minitue - 60
+    clock = hour , minitue, xxxx.strftime('%D')
+    with open(save_path + filename + '.txt', tipe) as reportt: 
+        print(f'# {current} DONE ||# Next step: {nextt} || run time: {time.time() - pre_time:.3f} || date {clock}', file = reportt)     
+--
+# #################################################### ###################################################--
+# #################################################### ###################################################--
+# #################################################### ###################################################--
+# TIME CODE  USE %timeit, decorator or:
+time1 = time.time()
+
+# CODE
+
+print('elapsed time: ', time.time() - time1) 
+--
+# #################################################### ###################################################--
+# #################################################### ###################################################--
+# #################################################### ###################################################--
+#  memmory usage
+# ====================================
+import sys
+import numpy as np
+local_var = list(locals().items())
+a = []
+b = []
+for i,j in local_var:
+    aa = int(sys.getsizeof(j))
+    zz = i
+    if aa>=10000:
+        
+        b.append(zz)
+        a.append(aa)
+c = list(zip(b,a))
+print(*c, sep = '\n')
+
+--
+# #################################################### ###################################################--
+# #################################################### ###################################################--
+# #################################################### ###################################################--
+# for terminal 
+nohup python func.py %
+cd /data/sargoli/code
+--
+# #################################################### ###################################################--
+# #################################################### ###################################################--
+# #################################################### ###################################################--
+get xy
+x_df = df98_csv.loc[:, df98_csv.columns != 'target']
+y_df = df98_csv.loc[:, df98_csv.columns == 'target']
+x_test, y_test = np.array(x_df), np.array(y_df)
+--
+# #################################################### ###################################################--
+# #################################################### ###################################################--
+# #################################################### ###################################################--
+class_percent = dict(df_df.LABEL.value_counts()/df_df.shape[0])
+class_percent
+
+--
+# #################################################### ###################################################--
+# #################################################### ###################################################--
+# #################################################### ###################################################--
+
+import sys
+sys.path.insert(0, r'C:\Users\sargoli\project')
+
+del merge_df['Unnamed: 0']
+
+--
+# #################################################### ###################################################--
+# #################################################### ###################################################--
+# #################################################### ###################################################--
+with open(load_path, 'rb') as f:
+    lr = pickle.load(f)
+	
+	
+with open(name + '_' +  date0 + '.txt', 'w') as file: 
+	file.write('DATA FRAME description:\n')	
+	
+
+--
+# #################################################### ###################################################--
+
+import sys 
+filename = sys.argv[0]
+filename = filename.split('/')
+filename = filename[-1][:-3]
+print(filename)
+
+with open('/data/sargoli/moments/_momentReportOf_' + filename + '.txt', 'w') as reportt: 
+    print('-- start', file = reportt)
+
+
+
+
+
+--
+# #################################################### ###################################################--
+
+
+with open(pre_save_name + filename + '.txt', 'a') as reportt: 
+    print(' _ elapsed time: ', time.time() - time1,'\t Next: ', end = '\n', file = reportt) 
+
+
+
+----------------------------------------
+
+
+
+
+
+--
+# #################################################### ###################################################--
+
+cd /data/sargoli/code
+
+
+nohup python test.py &
+
+--
+# #################################################### ###################################################--
+# insert path 
+
+sys.path.insert(0, '/data/sargoli/code')
+
+
+
+
+
+--
+# #################################################### ###################################################--
+
+
+nohup python train_each_dataframe_logit.py;nohup python test_each_dataframe.py; nohup python stack2.py
+
+
+--
+--
+    
+with open(model_path, 'rb') as f:
+    rf_rf = pickle.load(f)    
+    
+--
+--
+
+# np save load
+
+import numpy as np
+np.savetxt(f'/data/sargoli/report/test_models/inbalance_dfname_{df_name}__modelname_{model_name}_ypred.txt', y_preds, encoding='utf-8')
+np.savetxt(f'/data/sargoli/report/test_models/inbalance_dfname_{df_name}__modelname_{model_name}_ytrue.txt', y_true, encoding='utf-8')
+
+y_true0 = np.loadtxt(f'/data/sargoli/report/test_models/dfname_test1400_0__modelname_2_LGBoost__ytrue.txt')
+
+--
+--
+--
+
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+time_sg.time_report(ppre,time1,'a','--> >>>start loop<<<<<<< ', '--> -----load data------ ');time1 = time.time() 
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+--
+--
+--
+
+
+--
+--
+--
+
+ppsutil.virtual_memory()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    if not sclf:
+        print('''sclf model is not defined, input:
+        1: use -train_model- function to train -train_dataset- of config and make model
+        2: to set path of model, load and use it. (model must compatible with dataset)
+        ''')
+        a = str(input('enter your chiece number: '))
+        if a == '1':
+            sclf = train_model(model_name = 'train_from_evaluate')
+        elif a == '2':
+            b = str(input('absolute path of model: '))
+            print(b)
+            sclf = joblib.load(b)
+        elif a == '3':
+            assert sclf == True,'model is not defined'
+			
+			
+			
+
+#6-4
+@_timeit
+def evaluate_solo(model=[], cols=None,
+             smote=False,
+            test_path=None,
+            out_path=os.getcwd() + '\\'):
+    '''
+    Parameters
+    ----------
+    sclf: the model to evaluate.
+    cols: which column(s) must be cosidered. we can use it for facility Features
+    smote: use SMOTE technique to overSample dataFrame
+    test_path: path of csv dataFrame to evaluate it
+    out_path: in the end of use this function it save the csv of target in each
+                model. this parameter tell the save directory
+    
+    
+    Description
+    ----------
+    evaluate stackingClassifier. return y_test and y_pred of each estimator {randomForest, XGboost, Logistic Regression}
+    
+    return
+    ----------
+    dataFrame of : y_test, y_test_pred, y_test_proba, y_test_pred_RF, y_test_pred_XGB, y_test_pred_LOGIT
+    '''
+
+    cols_ = cols+['LABEL']
+    
+    test_df = pd.read_csv(test_path, header=0, usecols=cols_)[cols_]
+    test_df.fillna(0, inplace=True)
+    X_test = test_df.loc[:, ~ test_df.columns.map(str).isin([str('LABEL')])]
+    y_test = test_df[str('LABEL')]
+    if smote == True:
+        oversample = SMOTE()
+        X_test, y_test = oversample.fit_resample(X_test, y_test)
+        print('\n','-' * 20, '\n','SMOTE applied, evaluateFunc','\n','-' * 20, '\n')
+        
+    y_test_pred = model.predict(X_test)
+    y_test_proba = model.predict_proba(X_test)[:, 1]
+    
+    
+    sample_df = pd.DataFrame()
+
+
+    sample_df['y_test_org'] = y_test
+    sample_df['y_test_pred'] = y_test_pred
+    sample_df['y_proba'] = y_test_proba
+    
+    sample_df.to_csv(out_path + 'out_ys.csv', index = False)
+    
+    return sample_df
+    
+	
+	
+	
+
+  
+#%% 22 evaluate_model
+@_timeit
+def evaluate_model(sclf=None, cols=None, test_path=None, out_path=os.getcwd()):
+    '''
+    Parameters
+    ----------
+    sclf: StackingCVClassifier model that has estimators = (randomForest, xgBoost, Logistic)
+    cols: which column(s) must be cosidered. we can use it for facility Features
+    test_path: path of test DataFrame 
+    out_path: directory to save the Report of Function
+    
+    Description
+    ----------
+    evaluating the StackingCVClassifier model
+    save evaluated ys(True,Predicted,probability) in csv format for all models
+    save get_metrics of each model in out_path of config
+    '''
+    
+    preds = evaluate(sclf=sclf, cols=cols, stacking_model=True, test_path=test_path)
+    
+    witFCLstr = 'Without Facility' if len(cols)>=200 else 'With Facility'
+    
+    pd.DataFrame(preds[0]).to_csv(out_path + f'{witFCLstr}_y_test.csv')
+    pd.DataFrame(preds[1]).to_csv(out_path + f'{witFCLstr}_y_test_pred.csv')
+    pd.DataFrame(preds[2]).to_csv(out_path + f'{witFCLstr}_y_test_pred_RF.csv')
+    pd.DataFrame(preds[3]).to_csv(out_path + f'{witFCLstr}_y_test_pred_XGB.csv')
+    pd.DataFrame(preds[4]).to_csv(out_path + f'{witFCLstr}_y_test_pred_LOGIT.csv')
+    pd.DataFrame(preds[5]).to_csv(out_path + f'{witFCLstr}_y_test_proba.csv')
+    
+    # if not pos_ratio:
+    #     preds = get_preds_for_evaluation(preds, pos_ratio)
+    #global fpreds
+    #fpreds = [float(x) for x in preds[0]]
+    get_metrics(list(preds[0]), list(preds[1]), log_file=f'Stacking - {witFCLstr}.log', title=f'Stacking - {witFCLstr}')
+    get_metrics(list(preds[0]), list(preds[2]), log_file=f'RF - {witFCLstr}.log', title=f'RF - {witFCLstr}')
+    get_metrics(list(preds[0]), list(preds[3]), log_file=f'XGB - {witFCLstr}.log', title=f'XGB - {witFCLstr}')
+    get_metrics(list(preds[0]), list(preds[4]), log_file=f'LOGIT - {witFCLstr}.log', title=f'LOGIT - {witFCLstr}')
+        
+    print('evaluation for all model is done!')
+    
+
+#%% 27 get_6to1
+def get_6to1(test_path=None,cat_cols=None):
+    '''
+    Parameters
+    ----------
+    
+    cols: 
+            
+    
+    
+    
+    Description
+    ----------
+    It estimates the model with ratio of six to one (take 6 sample from class zero & 1 sample from class one)
+    
+    
+    '''
+    withF_cols = ['OBSERVATION_DATE', 'CUSTGROUP', 'CNTRCT_GRNTNGDT_MIN', 'CNTRCT_PNLTYDBT_MAX_ZND_SUM_1Y', 'CNTRCT_PNLTYDBT_MAX_ZND_SUM_3Y', 'CNTRCT_PNLTYDBT_SUM_ZND_MAX_1Y', 'CNTRCT_PNLTYDBT_SUM_ZND_MAX_3Y', 'CNTRCT_PNLTYRCV_SUM_1Y', 'CNTRCT_PNLTYRCV_SUM_3Y', 'CNTRCT_PAY_SUM_1Y', 'CNTRCT_PAY_SUM_3Y', 'CNTRCT_PAY_MAX_1Y', 'CNTRCT_PAY_MAX_3Y', 'CNTRCT_TDBT_MSHKK_ZND_RATIO_AVG_1Y', 'CNTRCT_TDBT_MSHKK_ZND_RATIO_AVG_3Y', 'CNTRCT_TDBT_ZND_SUM_LAST', 'CNTRCT_SDBT_ZND_SUM_LAST', 'CNTRCT_TDBT_JARI_SUM_LAST', 'CNTRCT_SDBT_JARI_SUM_LAST', 'CNTRCT_TDBT_SQJARI_SUM_LAST', 'CNTRCT_SDBT_SQJARI_SUM_LAST', 'CNTRCT_TDBT_SRRSD_SUM_LAST', 'CNTRCT_SDBT_SRRSD_SUM_LAST', 'CNTRCT_TDBT_MVQ_SUM_LAST', 'CNTRCT_SDBT_MVQ_SUM_LAST', 'CNTRCT_TDBT_MSHKK_SUM_LAST', 'CNTRCT_SDBT_MSHKK_SUM_LAST', 'IND_CNTRCT_CNT_1Y', 'IND_CNTRCT_CNT_3Y', 'IND_CNTRCT_JARI_CNT_1Y', 'IND_CNTRCT_JARI_CNT_3Y', 'IND_CNTRCT_SRRSD_CNT_1Y', 'IND_CNTRCT_SRRSD_CNT_3Y', 'IND_CNTRCT_MVQ_CNT_1Y', 'IND_CNTRCT_MVQ_CNT_3Y', 'IND_CNTRCT_MSHKK_CNT_1Y', 'IND_CNTRCT_MSHKK_CNT_3Y', 'IND_CNTRCT_TDBT_SUM_MAX_1Y', 'IND_CNTRCT_TDBT_SUM_MAX_3Y', 'IND_CNTRCT_TDBT_SUM_JARI_MAX_1Y', 'IND_CNTRCT_TDBT_SUM_JARI_MAX_3Y', 'IND_CNTRCT_TDBT_SUM_SRRSD_MAX_1Y', 'IND_CNTRCT_TDBT_SUM_SRRSD_MAX_3Y', 'IND_CNTRCT_TDBT_SUM_MVQ_MAX_1Y', 'IND_CNTRCT_TDBT_SUM_MVQ_MAX_3Y', 'IND_CNTRCT_TDBT_SUM_MSHKK_MAX_1Y', 'IND_CNTRCT_TDBT_SUM_MSHKK_MAX_3Y', 'IND_CNTRCT_PAY_MAX_1Y', 'IND_CNTRCT_PAY_MAX_3Y', 'IND_CNTRCT_SMPAY_MAX_JARI_MAX_1Y', 'IND_CNTRCT_SMPAY_MAX_JARI_MAX_3Y', 'IND_CNTRCT_SMPAY_MAX_MSHKK_SUM_1Y', 'IND_CNTRCT_SMPAY_MAX_MSHKK_SUM_3Y', 'FCL_FCLTYSTS_MAX_1Y', 'FCL_FCLTYSTS_MAX_3Y', 'FCL_PAY_SUM_1Y', 'FCL_PAY_SUM_3Y', 'FCL_SMPAY_MAX_ZND_SUM_1Y', 'FCL_SMPAY_MAX_ZND_SUM_3Y', 'FCL_SMPAY_MAX_JARI_SUM_1Y', 'FCL_SMPAY_MAX_JARI_SUM_3Y', 'FCL_SMPAY_MAX_SQJARI_SUM_1Y', 'FCL_SMPAY_MAX_SQJARI_SUM_3Y', 'FCL_SMPAY_MAX_TSV_SUM_1Y', 'FCL_SMPAY_MAX_TSV_SUM_3Y', 'FCL_GRNTNGDT_CNT_1Y', 'FCL_GRNTNGDT_CNT_3Y', 'FCL_ZND_CNT_1Y', 'FCL_ZND_CNT_3Y', 'FCL_JARI_CNT_1Y', 'FCL_JARI_CNT_3Y', 'FCL_SQJARI_CNT_1Y', 'FCL_SQJARI_CNT_3Y', 'FCL_SRRSD_CNT_1Y', 'FCL_SRRSD_CNT_3Y', 'FCL_MVQ_CNT_1Y', 'FCL_MVQ_CNT_3Y', 'FCL_MSHKK_CNT_1Y', 'FCL_MSHKK_CNT_3Y', 'FCL_TSV_CNT_1Y', 'FCL_TSV_CNT_3Y', 'FCL_SRRSD_ENTRNC_NEG_CNT_1Y', 'FCL_SRRSD_ENTRNC_NEG_CNT_3Y', 'FCL_SRRSD_ENTRNC_POS_CNT_1Y', 'FCL_SRRSD_ENTRNC_POS_CNT_3Y', 'FCL_MVQ_ENTRNC_NEG_CNT_1Y', 'FCL_MVQ_ENTRNC_NEG_CNT_3Y', 'FCL_MSHKK_ENTRNC_NEG_CNT_1Y', 'FCL_MSHKK_ENTRNC_NEG_CNT_3Y', 'FCL_TDBT_MAX_JARI_SUM_1Y', 'FCL_TDBT_MAX_JARI_SUM_3Y', 'FCL_TDBT_MAX_SQJARI_SUM_1Y', 'FCL_TDBT_MAX_SQJARI_SUM_3Y', 'FCL_TDBT_MAX_MSHKK_SUM_1Y', 'FCL_TDBT_MAX_MSHKK_SUM_3Y', 'FCL_TDBT_SUM_ZND_MAX_1Y', 'FCL_TDBT_SUM_ZND_MAX_3Y', 'FCL_TDBT_SUM_JARI_MAX_1Y', 'FCL_TDBT_SUM_JARI_MAX_3Y', 'FCL_TDBT_SUM_SQJARI_MAX_1Y', 'FCL_TDBT_SUM_SQJARI_MAX_3Y', 'FCL_TDBT_SUM_MSHKK_MAX_1Y', 'FCL_TDBT_SUM_MSHKK_MAX_3Y', 'FCL_TDBT_SUM_TSV_MAX_1Y', 'FCL_TDBT_SUM_TSV_MAX_3Y', 'FCL_SDBT_MAX_ZND_SUM_1Y', 'FCL_SDBT_MAX_ZND_SUM_3Y', 'FCL_SDBT_MAX_JARI_SUM_1Y', 'FCL_SDBT_MAX_JARI_SUM_3Y', 'FCL_SDBT_MAX_SQJARI_SUM_1Y', 'FCL_SDBT_MAX_SQJARI_SUM_3Y', 'FCL_SDBT_MAX_SRRSD_SUM_1Y', 'FCL_SDBT_MAX_SRRSD_SUM_3Y', 'FCL_SDBT_MAX_MVQ_SUM_1Y', 'FCL_SDBT_MAX_MVQ_SUM_3Y', 'FCL_SDBT_MAX_TSV_SUM_1Y', 'FCL_SDBT_MAX_TSV_SUM_3Y', 'FCL_SDBT_SUM_ZND_MAX_1Y', 'FCL_SDBT_SUM_ZND_MAX_3Y', 'FCL_SDBT_SUM_JARI_MAX_1Y', 'FCL_SDBT_SUM_JARI_MAX_3Y', 'FCL_SDBT_SUM_SQJARI_MAX_1Y', 'FCL_SDBT_SUM_SQJARI_MAX_3Y', 'FCL_SDBT_SUM_SRRSD_MAX_1Y', 'FCL_SDBT_SUM_SRRSD_MAX_3Y', 'FCL_SDBT_SUM_MVQ_MAX_1Y', 'FCL_SDBT_SUM_MVQ_MAX_3Y', 'FCL_SDBT_SUM_TSV_MAX_1Y', 'FCL_SDBT_SUM_TSV_MAX_3Y', 'FCL_RCVAMNT_MAX_1Y', 'FCL_RCVAMNT_MAX_3Y', 'FCL_RCVAMNT_SUM_1Y', 'FCL_RCVAMNT_SUM_3Y', 'FCL_RCVAMNT_AVG_1Y', 'FCL_RCVAMNT_AVG_3Y', 'FCL_SDBT_SRRSD_SUM_TDBT_ZND_SUM_RATIO_AVG_1Y', 'FCL_SDBT_SRRSD_SUM_TDBT_ZND_SUM_RATIO_AVG_3Y', 'FCL_SDBT_MVQ_SUM_TDBT_ZND_SUM_RATIO_AVG_1Y', 'FCL_SDBT_MVQ_SUM_TDBT_ZND_SUM_RATIO_AVG_3Y', 'LC_GRN_CNT_1Y', 'LC_GRN_CNT_3Y', 'LC_GRN_GRNTNGDT_CNT_1Y', 'LC_GRN_GRNTNGDT_CNT_3Y', 'LC_GRN_ZABT_CNT_1Y', 'LC_GRN_ZABT_CNT_3Y', 'LC_GRN_GRNTNGDT_AMNT_MAX_SUM_1Y', 'LC_GRN_GRNTNGDT_AMNT_MAX_SUM_3Y', 'LC_GRN_AMNT_MAX_ZND_SUM_1Y', 'LC_GRN_AMNT_MAX_ZND_SUM_3Y', 'LC_GRN_ZABT_PAY_SUM_1Y', 'LC_GRN_ZABT_PAY_SUM_3Y', 'LC_GRN_TDBT_MAX_BDHKRN_SUM_1Y', 'LC_GRN_TDBT_MAX_BDHKRN_SUM_3Y', 'LC_GRN_TDBT_MAX_MSHKK_SUM_1Y', 'LC_GRN_TDBT_MAX_MSHKK_SUM_3Y', 'LC_GRN_TDBT_SUM_BDHKRN_MAX_1Y', 'LC_GRN_TDBT_SUM_BDHKRN_MAX_3Y', 'LC_GRN_TDBT_SUM_MSHKK_MAX_1Y', 'LC_GRN_TDBT_SUM_MSHKK_MAX_3Y', 'ACC_BLNC_EOM_MAX_1Y', 'ACC_BLNC_EOM_AVG_1Y', 'ACC_FREE_BLNC_EOM_AVG_1Y', 'ACC_MDL_MON_AVG_1Y', 'ACC_COST_BLNC_EOM_MAX_1Y', 'ACC_FREE_BLNC_EOM_MAX_1Y', 'ACC_COST_BLNC_EOM_AVG_1Y', 'ACC_COST_MDL_MON_AVG_1Y', 'ACC_FREE_MDL_MON_AVG_1Y', 'ACC_COST_MDL_MON_MAX_1Y', 'ACC_FREE_MDL_MON_MAX_1Y', 'ACC_MDL_MON_MAX_1Y', 'ACC_BLNC_EOM_MAX_6M', 'ACC_BLNC_EOM_AVG_6M', 'ACC_FREE_BLNC_EOM_AVG_6M', 'ACC_MDL_MON_AVG_6M', 'ACC_COST_BLNC_EOM_MAX_6M', 'ACC_FREE_BLNC_EOM_MAX_6M', 'ACC_COST_BLNC_EOM_AVG_6M', 'ACC_COST_MDL_MON_AVG_6M', 'ACC_FREE_MDL_MON_AVG_6M', 'ACC_COST_MDL_MON_MAX_6M', 'ACC_FREE_MDL_MON_MAX_6M', 'ACC_MDL_MON_MAX_6M', 'ACC_BLNC_EOM_MAX_3M', 'ACC_BLNC_EOM_AVG_3M', 'ACC_FREE_BLNC_EOM_AVG_3M', 'ACC_MDL_MON_AVG_3M', 'ACC_COST_BLNC_EOM_MAX_3M', 'ACC_FREE_BLNC_EOM_MAX_3M', 'ACC_COST_BLNC_EOM_AVG_3M', 'ACC_COST_MDL_MON_AVG_3M', 'ACC_FREE_MDL_MON_AVG_3M', 'ACC_COST_MDL_MON_MAX_3M', 'ACC_FREE_MDL_MON_MAX_3M', 'ACC_MDL_MON_MAX_3M', 'TRN_CR_CNT_1Y', 'TRN_ACC_COST_CR_CNT_1Y', 'TRN_ACC_FREE_CR_CNT_1Y', 'TRN_CR_AMNT_SUM_1Y', 'TRN_ACC_COST_CR_AMNT_SUM_1Y', 'TRN_ACC_FREE_CR_AMNT_SUM_1Y', 'TRN_DB_CNT_1Y', 'TRN_ACC_COST_DB_CNT_1Y', 'TRN_ACC_FREE_DB_CNT_1Y', 'TRN_DB_AMNT_SUM_1Y', 'TRN_ACC_COST_DB_AMNT_SUM_1Y', 'TRN_ACC_FREE_DB_AMNT_SUM_1Y', 'TRN_CR_CNT_6M', 'TRN_ACC_COST_CR_CNT_6M', 'TRN_ACC_FREE_CR_CNT_6M', 'TRN_CR_AMNT_SUM_6M', 'TRN_ACC_COST_CR_AMNT_SUM_6M', 'TRN_ACC_FREE_CR_AMNT_SUM_6M', 'TRN_DB_CNT_6M', 'TRN_ACC_COST_DB_CNT_6M', 'TRN_ACC_FREE_DB_CNT_6M', 'TRN_DB_AMNT_SUM_6M', 'TRN_ACC_COST_DB_AMNT_SUM_6M', 'TRN_ACC_FREE_DB_AMNT_SUM_6M', 'TRN_CR_CNT_3M', 'TRN_ACC_COST_CR_CNT_3M', 'TRN_ACC_FREE_CR_CNT_3M', 'TRN_CR_AMNT_SUM_3M', 'TRN_ACC_COST_CR_AMNT_SUM_3M', 'TRN_ACC_FREE_CR_AMNT_SUM_3M', 'TRN_DB_CNT_3M', 'TRN_ACC_COST_DB_CNT_3M', 'TRN_ACC_FREE_DB_CNT_3M', 'TRN_DB_AMNT_SUM_3M', 'TRN_ACC_COST_DB_AMNT_SUM_3M', 'TRN_ACC_FREE_DB_AMNT_SUM_3M', 'CHQ_PASS_CNT_3Y', 'CHQ_PASS_AMNT_SUM_3Y', 'CHQ_RETURN_PASS_CNT_3Y', 'CHQ_RETURN_PASS_AMNT_SUM_3Y', 'CHQ_PASS_CNT_1Y', 'CHQ_PASS_AMNT_SUM_1Y', 'CHQ_RETURN_PASS_CNT_1Y', 'CHQ_RETURN_PASS_AMNT_SUM_1Y', 'CHQ_RETURN_AMNT_SUM_3Y', 'CHQ_RETURN_CNT_3Y', 'CHQ_RETURN_AMNT_SUM_1Y', 'CHQ_RETURN_CNT_1Y', 'CHQ_CHQBK_CNT_3Y', 'CHQ_CHQBK_CNT_1Y', 'CBI_INQUERY_RETURN_CHQ_CNT_3Y', 'CBI_RETURN_CHQ_CNT_3Y', 'CBI_RETURN_CHQ_MAX_3Y', 'CBI_RETURN_CHQ_SUM_3Y', 'CBI_RETURN_CHQ_AVG_3Y', 'CBI_INQUERY_RETURN_CHQ_CNT_1Y', 'CBI_RETURN_CHQ_CNT_1Y', 'CBI_RETURN_CHQ_MAX_1Y', 'CBI_RETURN_CHQ_SUM_1Y', 'CBI_RETURN_CHQ_AVG_1Y', 'FIRSTACCCREATEDATE', 'SEXTYPE', 'BIRTHCITYCODE', 'CBI_CNTRCT_REQUEST_CNT_3Y', 'CBI_CNTRCT_CNTRCT_CNT_3Y', 'CBI_CNTRCT_ASL_MAX_MAX_3Y', 'CBI_CNTRCT_ASL_MAX_SUM_3Y', 'CBI_CNTRCT_BEDEHI_MAX_MAX_3Y', 'CBI_CNTRCT_SARRESID_MAX_MAX_3Y', 'CBI_CNTRCT_MOAVAQ_MAX_MAX_3Y', 'CBI_CNTRCT_MASHKUK_MAX_MAX_3Y', 'CBI_CNTRCT_REQUEST_CNT_1Y', 'CBI_CNTRCT_CNTRCT_CNT_1Y', 'CBI_CNTRCT_ASL_MAX_MAX_1Y', 'CBI_CNTRCT_ASL_MAX_SUM_1Y', 'CBI_CNTRCT_BEDEHI_MAX_MAX_1Y', 'CBI_CNTRCT_SARRESID_MAX_MAX_1Y', 'CBI_CNTRCT_MOAVAQ_MAX_MAX_1Y', 'CBI_CNTRCT_MASHKUK_MAX_MAX_1Y']
+
+    X,y = get_Xy(df_path=test_path,cols=withF_cols)
+
+    model = train_model(X=X, y=y,model_name = 'train_6to1_with_FCL')
+    y_test, y_test_pred, *_ = evaluate(sclf=model,cols=withF_cols,test_path=test_path)
+
+
+    
+    y, y_pred = get_preds_for_evaluation(y_test, y_test_pred, pos_rate=6)
+    model_name ='Stacking_With_Facility'
+    get_metrics(y=y, y_pred=y_pred, log_file=f'{model_name}_pos_rate_6.log', title=f'{model_name}_pos_rate_6')
+
+    
+    withoutF_cols = ['OBSERVATION_DATE', 'CUSTGROUP', 'IND_CNTRCT_CNT_1Y', 'IND_CNTRCT_CNT_3Y', 'IND_CNTRCT_JARI_CNT_1Y', 'IND_CNTRCT_JARI_CNT_3Y', 'IND_CNTRCT_SRRSD_CNT_1Y', 'IND_CNTRCT_SRRSD_CNT_3Y', 'IND_CNTRCT_MVQ_CNT_1Y', 'IND_CNTRCT_MVQ_CNT_3Y', 'IND_CNTRCT_MSHKK_CNT_1Y', 'IND_CNTRCT_MSHKK_CNT_3Y', 'IND_CNTRCT_TDBT_SUM_MAX_1Y', 'IND_CNTRCT_TDBT_SUM_MAX_3Y', 'IND_CNTRCT_TDBT_SUM_JARI_MAX_1Y', 'IND_CNTRCT_TDBT_SUM_JARI_MAX_3Y', 'IND_CNTRCT_TDBT_SUM_SRRSD_MAX_1Y', 'IND_CNTRCT_TDBT_SUM_SRRSD_MAX_3Y', 'IND_CNTRCT_TDBT_SUM_MVQ_MAX_1Y', 'IND_CNTRCT_TDBT_SUM_MVQ_MAX_3Y', 'IND_CNTRCT_TDBT_SUM_MSHKK_MAX_1Y', 'IND_CNTRCT_TDBT_SUM_MSHKK_MAX_3Y', 'IND_CNTRCT_PAY_MAX_1Y', 'IND_CNTRCT_PAY_MAX_3Y', 'IND_CNTRCT_SMPAY_MAX_JARI_MAX_1Y', 'IND_CNTRCT_SMPAY_MAX_JARI_MAX_3Y', 'IND_CNTRCT_SMPAY_MAX_MSHKK_SUM_1Y', 'IND_CNTRCT_SMPAY_MAX_MSHKK_SUM_3Y', 'ACC_BLNC_EOM_MAX_1Y', 'ACC_BLNC_EOM_AVG_1Y', 'ACC_FREE_BLNC_EOM_AVG_1Y', 'ACC_MDL_MON_AVG_1Y', 'ACC_COST_BLNC_EOM_MAX_1Y', 'ACC_FREE_BLNC_EOM_MAX_1Y', 'ACC_COST_BLNC_EOM_AVG_1Y', 'ACC_COST_MDL_MON_AVG_1Y', 'ACC_FREE_MDL_MON_AVG_1Y', 'ACC_COST_MDL_MON_MAX_1Y', 'ACC_FREE_MDL_MON_MAX_1Y', 'ACC_MDL_MON_MAX_1Y', 'ACC_BLNC_EOM_MAX_6M', 'ACC_BLNC_EOM_AVG_6M', 'ACC_FREE_BLNC_EOM_AVG_6M', 'ACC_MDL_MON_AVG_6M', 'ACC_COST_BLNC_EOM_MAX_6M', 'ACC_FREE_BLNC_EOM_MAX_6M', 'ACC_COST_BLNC_EOM_AVG_6M', 'ACC_COST_MDL_MON_AVG_6M', 'ACC_FREE_MDL_MON_AVG_6M', 'ACC_COST_MDL_MON_MAX_6M', 'ACC_FREE_MDL_MON_MAX_6M', 'ACC_MDL_MON_MAX_6M', 'ACC_BLNC_EOM_MAX_3M', 'ACC_BLNC_EOM_AVG_3M', 'ACC_FREE_BLNC_EOM_AVG_3M', 'ACC_MDL_MON_AVG_3M', 'ACC_COST_BLNC_EOM_MAX_3M', 'ACC_FREE_BLNC_EOM_MAX_3M', 'ACC_COST_BLNC_EOM_AVG_3M', 'ACC_COST_MDL_MON_AVG_3M', 'ACC_FREE_MDL_MON_AVG_3M', 'ACC_COST_MDL_MON_MAX_3M', 'ACC_FREE_MDL_MON_MAX_3M', 'ACC_MDL_MON_MAX_3M', 'TRN_CR_CNT_1Y', 'TRN_ACC_COST_CR_CNT_1Y', 'TRN_ACC_FREE_CR_CNT_1Y', 'TRN_CR_AMNT_SUM_1Y', 'TRN_ACC_COST_CR_AMNT_SUM_1Y', 'TRN_ACC_FREE_CR_AMNT_SUM_1Y', 'TRN_DB_CNT_1Y', 'TRN_ACC_COST_DB_CNT_1Y', 'TRN_ACC_FREE_DB_CNT_1Y', 'TRN_DB_AMNT_SUM_1Y', 'TRN_ACC_COST_DB_AMNT_SUM_1Y', 'TRN_ACC_FREE_DB_AMNT_SUM_1Y', 'TRN_CR_CNT_6M', 'TRN_ACC_COST_CR_CNT_6M', 'TRN_ACC_FREE_CR_CNT_6M', 'TRN_CR_AMNT_SUM_6M', 'TRN_ACC_COST_CR_AMNT_SUM_6M', 'TRN_ACC_FREE_CR_AMNT_SUM_6M', 'TRN_DB_CNT_6M', 'TRN_ACC_COST_DB_CNT_6M', 'TRN_ACC_FREE_DB_CNT_6M', 'TRN_DB_AMNT_SUM_6M', 'TRN_ACC_COST_DB_AMNT_SUM_6M', 'TRN_ACC_FREE_DB_AMNT_SUM_6M', 'TRN_CR_CNT_3M', 'TRN_ACC_COST_CR_CNT_3M', 'TRN_ACC_FREE_CR_CNT_3M', 'TRN_CR_AMNT_SUM_3M', 'TRN_ACC_COST_CR_AMNT_SUM_3M', 'TRN_ACC_FREE_CR_AMNT_SUM_3M', 'TRN_DB_CNT_3M', 'TRN_ACC_COST_DB_CNT_3M', 'TRN_ACC_FREE_DB_CNT_3M', 'TRN_DB_AMNT_SUM_3M', 'TRN_ACC_COST_DB_AMNT_SUM_3M', 'TRN_ACC_FREE_DB_AMNT_SUM_3M', 'CHQ_PASS_CNT_3Y', 'CHQ_PASS_AMNT_SUM_3Y', 'CHQ_RETURN_PASS_CNT_3Y', 'CHQ_RETURN_PASS_AMNT_SUM_3Y', 'CHQ_PASS_CNT_1Y', 'CHQ_PASS_AMNT_SUM_1Y', 'CHQ_RETURN_PASS_CNT_1Y', 'CHQ_RETURN_PASS_AMNT_SUM_1Y', 'CHQ_RETURN_AMNT_SUM_3Y', 'CHQ_RETURN_CNT_3Y', 'CHQ_RETURN_AMNT_SUM_1Y', 'CHQ_RETURN_CNT_1Y', 'CHQ_CHQBK_CNT_3Y', 'CHQ_CHQBK_CNT_1Y', 'CBI_INQUERY_RETURN_CHQ_CNT_3Y', 'CBI_RETURN_CHQ_CNT_3Y', 'CBI_RETURN_CHQ_MAX_3Y', 'CBI_RETURN_CHQ_SUM_3Y', 'CBI_RETURN_CHQ_AVG_3Y', 'CBI_INQUERY_RETURN_CHQ_CNT_1Y', 'CBI_RETURN_CHQ_CNT_1Y', 'CBI_RETURN_CHQ_MAX_1Y', 'CBI_RETURN_CHQ_SUM_1Y', 'CBI_RETURN_CHQ_AVG_1Y', 'FIRSTACCCREATEDATE', 'SEXTYPE', 'BIRTHCITYCODE']
+    model = train_model(X=X, y=y, model_name = 'train_6to1_withOUT_FCL', cat_cols=cat_cols)
+    y_test, y_test_pred, *_ = evaluate(sclf=model, stacking_model=True, cols = withoutF_cols)
+
+
+
+    y_test = np.loadtxt(path_y_test_wof)
+    y_test_pred = np.loadtxt(path_y_test_pred_wof)
+    
+    
+    y, y_pred = get_preds_for_evaluation(y_test, y_test_pred, pos_rate=6)
+    model_name = 'Stacking_Without_Facility'
+    get_metrics(y=y, y_pred=y_pred, log_file=f'{model_name}_pos_rate_6.log', title=f'{model_name}_pos_rate_6')
+    print('DONE-')
+ 
+ 
+ 
+ 
+ 
+# %% 31 data_splitter_years
+
+
+def data_splitter(df, column, date0, date1):
+    a = df.loc[(df[column] >= date0) & (df[column] < date1)]
+    return a
+
+def data_splitter_year(df, column, year):
+    a = df.loc[(df[column] >= year*10000) & (df[column] < (year+1)*10000 )]
+    return a
+
+# <split data>        
+def data_splitter_years(df, column_name, dic:dict, base_year = None):
+    if base_year is None:
+        container = []
+        percent_and_year = list(dic.items())
+        for i in range(len(percent_and_year)):
+            year = percent_and_year[i][0]
+            actual_count = int(data_splitter_year(df, column_name, year).count()[0] * percent_and_year[i][1])
+            df_of_year = data_splitter_year(df, column_name, year).sample(actual_count)
+            print(f' - {actual_count} data are selected from year - {year} -')
+            container.append(df_of_year)
+        df_of_selected_years = pd.concat(container)
+        return df_of_selected_years
+    
+    if base_year is not None:
+        percent_of_base_year = list(dic.values())[list(dic.keys()).index(base_year)]
+        dataset_of_base_year = data_splitter_year(df, column_name, base_year)
+        count_for_base_year = int(dataset_of_base_year.shape[0] * percent_of_base_year)
+        print('count of base year:', count_for_base_year, f'\t percent Base Year: {percent_of_base_year}')
+        base_year_apply_percent = dataset_of_base_year.sample(count_for_base_year) 
+        del dic[base_year]
+        percent_and_year = list(dic.items())
+        container = []
+        for i in range(len(percent_and_year)):
+            desire_count = int(percent_and_year[i][1] * count_for_base_year)
+            year = percent_and_year[i][0]
+            actual_count = data_splitter_year(df, column_name, year).count()[0]
+            countof = min(desire_count, actual_count)
+            df_of_year = data_splitter_year(df, column_name, year).sample(countof)
+            print(f' - {countof} data are selected from year - {year} -')
+            container.append(df_of_year)
+        container.append(base_year_apply_percent)
+        df_of_selected_years = pd.concat(container)
+        return df_of_selected_years
+        
+		
+		
+		
+
+# %% 31  hyper parameter Test
+# =============================================================================
+# 
+# @_timeit
+# def HyperParameter_test(x_train=None, y_train=None,
+#                         x_test=None, y_test=None,
+#                         logit_params=None,
+#                         rf_params=None,
+#                         xg_params=None,
+#                         model_name=None, cat_cols=None,
+#                         out_path=os.getcwd()):
+#     '''
+#     Parameters
+#     ----------
+#     x_train: 
+#     y_train: 
+#     x_test:
+#     y_test:
+#     model_name: name for Save model in -out_path-
+#     cat_cols: category columns that WOE and Scaler Needs them
+#     
+#     Description
+#     ----------
+# 
+#     
+#     '''
+#     
+# 
+#     
+#     
+#     #print(f'number of row in dataset: {X.shape[0]}\nnumber of features in dataset: {X.shape[1]}')
+#     
+# 
+#     woe_encoder,scaler = fit_woe_encoder(X=x_train,
+#                                          y=y_train,
+#                                          model_name=model_name,
+#                                          cat_cols=cat_cols,
+#                                         out_path=out_path)
+#     
+#     lgt = make_pipeline(woe_encoder, scaler, LogisticRegression(C=150,
+#                                                                 penalty='l2',
+#                                                                 solver='newton-cg',
+#                                                                 max_iter=100000,
+#                                                                 tol=1e-4,
+#                                                                 multi_class='auto',                                                             
+#                                                                 verbose=1))  
+# 
+#     
+#     rf = RandomForestClassifier(n_estimators=50,
+#                                 class_weight='balanced',
+#                                 criterion='gini',
+#                                 max_features='sqrt',
+#                                 max_depth=10,
+#                                 max_leaf_nodes=20,
+#                                 max_samples=None,
+#                                 ccp_alpha=0,
+#                                 min_samples_split=.1,
+#                                 min_samples_leaf=3,
+#                                 min_weight_fraction_leaf=0,
+#                                 min_impurity_decrease=0,
+#                                 bootstrap=True,
+#                                 oob_score=False,
+#                                 warm_start=False,                                
+#                                 verbose=1)
+# 
+#     xgb = XGBClassifier(n_estimators=80,
+#                         objective='binary:logistic',
+#                         booster='gbtree',
+#                         tree_method='hist',
+#                         subsample=.8,
+#                         colsample_bytree=.8,
+#                         gamma=.5,
+#                         learning_rate=.3,
+#                         max_depth=15,
+#                         min_child_weight=10,
+#                         reg_alpha=0,
+#                         reg_lambda=1,
+#                         enable_categorical=True)
+# 
+#     lr = LogisticRegression(random_state=255)
+# 
+#     skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=255)
+#     sclf = StackingCVClassifier(classifiers=[rf, xgb, lgt],
+#                                 meta_classifier=lr,                             
+#                                 use_probas=True,
+#                                 cv=skf,
+#                                 shuffle=True,
+#                                 use_features_in_secondary=False,
+#                                 store_train_meta_features=True,
+#                                 n_jobs=1,
+#                                 random_state=255,
+#                                 verbose=1)
+# 
+# 
+#     sclf.fit(X, np.ravel(y))
+#     
+#     if model_name:
+#         joblib.dump(sclf, f'{out_path}/trainedModel_{model_name}.pkl')
+#     else:
+#         print('*** model is not saved *** ')
+#     return sclf
+# =============================================================================
+
+</python_stuff>
